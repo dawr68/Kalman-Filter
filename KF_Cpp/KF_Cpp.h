@@ -6,4 +6,4 @@
 #define KFLIBRARY_API __declspec(dllimport)
 #endif
 
-extern "C" KFLIBRARY_API int filter();
+extern "C" KFLIBRARY_API int filter(double *rawData, double *filteredData, int dataSize);

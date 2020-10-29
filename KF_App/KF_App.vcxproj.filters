@@ -24,30 +24,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="KF_GUI.qrc">
+    <QtRcc Include="KF_App.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="KF_GUI.ui">
+    <QtUic Include="KF_App.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
-    <QtMoc Include="KF_GUI.h">
+    <QtMoc Include="KF_App.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="KF_GUI.cpp">
+    <ClCompile Include="KF_App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="FilterManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="$pro_name$.rc">
+    </ResourceCompile>
+    <None Include="$pro_name$.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="$pro_name$.def">
+      <Filter>Resource Files</Filter>
+    </None>
+
   </ItemGroup>
 </Project>

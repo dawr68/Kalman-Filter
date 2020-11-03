@@ -1,10 +1,16 @@
-#include "KF_App.h"
+#include "KF_GUI.h"
 #include <QtWidgets/QApplication>
+#include "FilterManager.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    KF_App w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    KF_GUI mainWindow;
+    FilterManager kalman_filter;
+
+    mainWindow.setFilterManager(&kalman_filter);
+    mainWindow.setupGraphs();
+    mainWindow.show();
+
+    return app.exec();
 }

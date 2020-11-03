@@ -6,4 +6,4 @@
 #define KFLIBRARY_API __declspec(dllimport)
 #endif
 
-extern "C" KFLIBRARY_API int filter(double *rawData, double *filteredData, int dataSize);
+extern "C" KFLIBRARY_API int filter(float* rawGyroData, float* rawAccAngle, float* filteredData, int dataSize);

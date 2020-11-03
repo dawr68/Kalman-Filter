@@ -59,9 +59,9 @@ void KF_GUI::setupGraphs()
         chart[i]->legend()->setGeometry(QRectF(300, 5, 200, 40));
     }
 
-    chart[0]->setTitle("Gyro X Axis");
-    chart[1]->setTitle("Gyro Y Axis");
-    chart[2]->setTitle("Gyro Z Axis");
+    chart[0]->setTitle("X Axis");
+    chart[1]->setTitle("Y Axis");
+    chart[2]->setTitle("Z Axis");
     chart[3]->setTitle("Acc X Axis");
     chart[4]->setTitle("Acc Y Axis");
     chart[5]->setTitle("Acc Z Axis");
@@ -106,11 +106,11 @@ void KF_GUI::on_plotButton_clicked()
     ui.statusLabel->setStyleSheet("QLabel { color: rgb(0, 122, 204);; }");
     ui.statusLabel->update();
 
-    double **rawDataArr = filter->getRawGyroData();
-    double **filteredDataArr = filter->getFilteredGyroData();
+    float **rawDataArr = filter->getRawAngles();
+    float **filteredDataArr = filter->getFilteredAngles();
     int count = filter->getDataSize();
 
-    for (int i = 0, s=0; i < 6; i++, s+=2) {
+    for (int i = 0, s=0; i < 3; i++, s+=2) {
         chart[i]->removeSeries(series[s]);
         chart[i]->removeSeries(series[s+1]);
         series[s]->clear();

@@ -10,20 +10,22 @@ class FilterManager
 	
 	int dataSize = 0;
 
-	double *rawGyroData[3];
-	double *rawAccData[3];
+	float *rawGyroData[3];
+	float *rawAccData[3];
 
-	double *filteredGyroData[3];
-	double *filteredAccData[3];
+	float *rawAngles[3]; //X Y Z
+	float *filteredAngles[3]; //X Y Z
 
-	double numberOfThreads = 1;
-	double lastExeDuration = 0;
+	float numberOfThreads = 1;
+	float lastExeDuration = 0;
 
 public:
 	FilterManager();
 	~FilterManager();
 
 	void readRawDataFromFile(std::string dataFile);
+
+	void calculateAngles();
 
 	void execute();
 	
@@ -34,12 +36,13 @@ public:
 	int getNumberOfThreads();
 	int getDataSize();
 
-	double** getRawGyroData();
-	double** getFilteredGyroData();
-	double** getRawAccData();
-	double** getFilteredAccData();
+	float** getRawGyroData();
+	float** getRawAccData();
 
-	double getLastExeDur();
+	float** getRawAngles();
+	float** getFilteredAngles();
+
+	float getLastExeDur();
 	bool getLastUsedLibrary();
 
 	void chooseAsmLibrary();

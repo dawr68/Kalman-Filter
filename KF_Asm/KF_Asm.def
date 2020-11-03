@@ -1,3 +1,2 @@
 LIBRARY "KF_Asm"
-EXPORTS
-filter
+EXPORTS filter

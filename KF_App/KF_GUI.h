@@ -3,8 +3,11 @@
 #include <QtWidgets/QWidget>
 #include "ui_KF_GUI.h"
 #include <QFileDialog>
-#include <QtCharts>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
 #include "FilterManager.h"
+
+using namespace QtCharts;
 
 class KF_GUI : public QWidget
 {

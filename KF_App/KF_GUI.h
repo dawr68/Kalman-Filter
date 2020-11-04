@@ -34,6 +34,7 @@ private:
     QChartView *chartView[6];
     QLineSeries *series[12];
     QLineSeries *test1, test2;
+   
 
     FilterManager *filter;
 };

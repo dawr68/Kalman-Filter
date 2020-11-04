@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="KF_GUI">
+    <qresource prefix="/KF_GUI">
+        <file>Logo.png</file>
     </qresource>
 </RCC>

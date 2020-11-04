@@ -11,6 +11,7 @@ KF_GUI::KF_GUI(QWidget *parent)
         chart[i] = 0;
         chartView[i] = 0;
     }
+
 }
 
 
@@ -35,7 +36,7 @@ void KF_GUI::setupGraphs()
     for (auto &ser : series)
         ser = new QLineSeries;
 
-    for (int i = 0, c = 0, r = 0, s = 0; i < 6; i++, c++, s+=2) {
+    for (int i = 0, c = 0, r = 0, s = 0; i < 3; i++, c++, s+=2) {
         chart[i] = new QChart;
         chartView[i] = new QChartView(chart[i]);
         ui.chartsGrid->addWidget(chartView[i], r, c);
@@ -62,9 +63,9 @@ void KF_GUI::setupGraphs()
     chart[0]->setTitle("X Axis");
     chart[1]->setTitle("Y Axis");
     chart[2]->setTitle("Z Axis");
-    chart[3]->setTitle("Acc X Axis");
-    chart[4]->setTitle("Acc Y Axis");
-    chart[5]->setTitle("Acc Z Axis");
+    //chart[3]->setTitle("Acc X Axis");
+    //chart[4]->setTitle("Acc Y Axis");
+    //chart[5]->setTitle("Acc Z Axis");
 }
 
 

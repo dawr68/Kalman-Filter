@@ -63,9 +63,6 @@ void KF_GUI::setupGraphs()
     chart[0]->setTitle("X Axis");
     chart[1]->setTitle("Y Axis");
     chart[2]->setTitle("Z Axis");
-    //chart[3]->setTitle("Acc X Axis");
-    //chart[4]->setTitle("Acc Y Axis");
-    //chart[5]->setTitle("Acc Z Axis");
 }
 
 

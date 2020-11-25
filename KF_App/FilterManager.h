@@ -16,7 +16,7 @@ class FilterManager
 	float *rawAngles[3]; //X Y Z
 	float *filteredAngles[3]; //X Y Z
 
-	float numberOfThreads = 1;
+	int numberOfThreads = 1;
 	float lastExeDuration = 0;
 
 public:

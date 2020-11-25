@@ -32,6 +32,11 @@ int filter(float* rawGyroData, float* rawAccAngle, float* filteredData, int data
         float u = rawGyroData[i];
 
         //Aktualizacja czasu
+        float a = A[0][0] * xpost[0];
+        float b = A[0][1] * xpost[1];
+        float c = a + b;
+        float d = u * B[0];
+        float e = c + d;
         //xpri = A * xpost + B*u;
         xpri[0] = A[0][0] * xpost[0] + A[0][1] * xpost[1] + B[0]*u;
         xpri[1] = A[1][1] * xpost[1] + B[1]*u;
@@ -46,7 +51,7 @@ int filter(float* rawGyroData, float* rawAccAngle, float* filteredData, int data
         float eps = rawAccAngle[i] - xpri[0];
         //float S = H * Ppri * H' + W;
         float S = Ppri[0][0] + W;
-        //float K = Ppri * H' * (1 / S);
+        //K = Ppri * H' * (1 / S);
         float K[2]{ Ppri[0][0] / S, Ppri[1][0] / S };
         //xpost = xpri + K * eps;
         xpost[0] = xpri[0] + K[0] * eps;

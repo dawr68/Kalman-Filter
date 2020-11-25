@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <thread>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -104,7 +105,6 @@ void FilterManager::calculateAngles()
     }
 }
 
-
 void FilterManager::execute()
 {
     HINSTANCE hLib = NULL;
@@ -131,10 +131,22 @@ void FilterManager::execute()
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    for (int i = 0; i < 3; i++)
-    {
-        filter(rawGyroData[i], rawAngles[i], filteredAngles[i], dataSize);
-    }
+    if(numberOfThreads == 1)
+        for (int i = 0; i < 3; i++)
+        {
+            filter(rawGyroData[i], rawAngles[i], filteredAngles[i], dataSize);
+        }
+    else
+        if (numberOfThreads == 2) {
+        }
+        else {
+            std::thread t1(filter, rawGyroData[0], rawAngles[0], filteredAngles[0], dataSize);
+            std::thread t2(filter, rawGyroData[1], rawAngles[1], filteredAngles[1], dataSize);
+            std::thread t3(filter, rawGyroData[2], rawAngles[2], filteredAngles[2], dataSize);
+            t1.join();
+            t2.join();
+            t3.join();
+        }
 
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
@@ -161,7 +173,7 @@ std::string FilterManager::getDataFilePath()
 void FilterManager::setNumberOfThreads(int num)
 {
     if (num >= 1 || num <= 6)
-        numberOfThreads;
+        numberOfThreads = num;
 }
 
 

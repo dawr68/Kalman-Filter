@@ -108,6 +108,9 @@ void KF_GUI::on_plotButton_clicked()
     float **filteredDataArr = filter->getFilteredAngles();
     int count = filter->getDataSize();
 
+    if (count > 1000) //data too large to display properly
+        count = 1000;
+
     for (int i = 0, s=0; i < 3; i++, s+=2) {
         chart[i]->removeSeries(series[s]);
         chart[i]->removeSeries(series[s+1]);

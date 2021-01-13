@@ -45,6 +45,14 @@ FilterManager::~FilterManager()
 void FilterManager::readRawDataFromFile(std::string dataFile)
 {
     dataSize = 341;
+    std::ifstream testFile(dataFile);
+
+    dataSize = std::count(std::istreambuf_iterator<char>(testFile),
+        std::istreambuf_iterator<char>(), '\n');
+    dataSize -= 1; //subtract header
+
+    std::ifstream inputFile;
+    inputFile.open(dataFile);
 
     for (auto& axis : rawGyroData)
         axis = new float[dataSize];
@@ -57,9 +65,6 @@ void FilterManager::readRawDataFromFile(std::string dataFile)
 
     for (auto& axis : filteredAngles)
         axis = new float[dataSize];
-
-    std::ifstream inputFile;
-    inputFile.open(dataFile);
 
     if (inputFile.is_open())
     {
@@ -131,13 +136,22 @@ void FilterManager::execute()
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    if(numberOfThreads == 1)
-        for (int i = 0; i < 3; i++)
-        {
-            filter(rawGyroData[i], rawAngles[i], filteredAngles[i], dataSize);
-        }
+    if (numberOfThreads == 1) {
+        std::thread t1(filter, rawGyroData[0], rawAngles[0], filteredAngles[0], dataSize);
+        t1.join();
+        std::thread t2(filter, rawGyroData[1], rawAngles[1], filteredAngles[1], dataSize);
+        t2.join();
+        std::thread t3(filter, rawGyroData[2], rawAngles[2], filteredAngles[2], dataSize);
+        t3.join();
+    }
     else
         if (numberOfThreads == 2) {
+            std::thread t1(filter, rawGyroData[0], rawAngles[0], filteredAngles[0], dataSize);
+            std::thread t2(filter, rawGyroData[1], rawAngles[1], filteredAngles[1], dataSize);
+            t1.join();
+            std::thread t3(filter, rawGyroData[2], rawAngles[2], filteredAngles[2], dataSize);
+            t2.join();
+            t3.join();
         }
         else {
             std::thread t1(filter, rawGyroData[0], rawAngles[0], filteredAngles[0], dataSize);

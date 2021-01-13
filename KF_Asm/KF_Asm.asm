@@ -86,7 +86,7 @@ for_loop:
 	movd [xpri+4], xmm1
 
 
-;Ppri = A * Ppost * A' + V;
+	;Ppri = A * Ppost * A' + V;
 
 	movups xmm0, DWORD PTR[Ppost]
 	movups xmm1, DWORD PTR[v]

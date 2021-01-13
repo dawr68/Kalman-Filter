@@ -1,6 +1,20 @@
-// KF_Cpp.cpp : Defines the exported functions for the DLL.
+/**
+* Filtr Kalmana
+* Algorytm implementuje filtracjê Kalmana na przekazanych danych z czujników IMU (akcelerometr i ¿yroskop).
+* Semestr: 5 Rok: 3
+* Autor: Dawid Rudy
+* Wersja 1.0
+*/
 #include "KF_Cpp.h"
 
+/* filter
+* Prodecura wykonuje filtr kalmana na przekazanych danych znajduj¹cych siê w tablicach.
+*   rawGyroData - wskaŸnik na tablicê zawieraj¹c¹ odczyty z ¿yroskopu
+*   rawAccAngle - wskaŸnik na tablicê zawieraj¹c¹ k¹t pochylenia czujnika obliczony na podstawie odczytów z akcelerometru
+*   filteredData - wskaŸnik na pust¹ tablicê w której zostan¹ umieszczone wyniki wykonania algorytmu
+*   dataSize - wartoœæ oznaczaj¹ca rozmiar wszystkich przes³anych tablic
+* Procedura zwraca 0 je¿eli filtracja zosta³a wykonana poprawnie.
+*/
 int filter(float* rawGyroData, float* rawAccAngle, float* filteredData, int dataSize)
 {
     if (!rawGyroData || !rawAccAngle || !filteredData)

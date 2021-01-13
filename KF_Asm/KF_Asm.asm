@@ -1,3 +1,8 @@
+; Filtr Kalmana
+; Algorytm implementuje filtracjê Kalmana na przekazanych danych z czujników IMU (akcelerometr i ¿yroskop).
+; Semestr: 5 Rok: 3
+; Autor: Dawid Rudy
+; Wersja 1.0
 .data
 
 deltat dd 0.1
@@ -22,12 +27,20 @@ one000 dd 1.0, 0.0, 0.0, 0.0
 
 
 .code 
-
+; filter
+; Prodecura wykonuje filtr kalmana na przekazanych danych znajduj¹cych siê w tablicach.
+;   RCX - wskaŸnik na tablicê zawieraj¹c¹ odczyty z ¿yroskopu
+;   RDX - wskaŸnik na tablicê zawieraj¹c¹ k¹t pochylenia czujnika obliczony na podstawie odczytów z akcelerometru
+;   R8 - wskaŸnik na pust¹ tablicê w której zostan¹ umieszczone wyniki wykonania algorytmu
+;   dataSize - wartoœæ oznaczaj¹ca rozmiar wszystkich przes³anych tablic
+; Procedura zwraca 0 je¿eli filtracja zosta³a wykonana poprawnie.
+;
 filter proc
 	;RCX: raw Gyro Data
 	;RDX raw Acc Angle
 	;R8: filtered Data
 	;R9: data Size
+
 
 ;przygotowanie macierzy stanu
 xorps xmm0, xmm0 
